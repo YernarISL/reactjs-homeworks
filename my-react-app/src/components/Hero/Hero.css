@@ -1,0 +1,28 @@
+.hero-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    border-radius: 15px;
+    border: none;
+    width: 632px;
+    height: 330px;
+    padding: 40px 32px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-image {
+    width: 250px;
+    height: 250px;
+}
+
+.cite-container {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.cite-text {
+    width: 300px;
+    font-style: italic;
+}

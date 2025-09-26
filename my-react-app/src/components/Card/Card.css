@@ -1,0 +1,44 @@
+.card-container {
+    margin-top: 20px;
+    margin-bottom: 200px;
+}
+
+.card-background {
+    background-image: url("/cardBackground.png");
+    width: calc(355px - 2 * 32px);
+    /* height: 409px; */
+    padding: 32px 32px 0;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+}
+
+.content-container {
+    margin-top: 25px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.name-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.name-text {
+    color: #fff;
+    font-weight: 600;
+}
+
+.github-link-container {
+    /* display: flex;
+    flex-direction: row;
+    align-items: center; */
+}
+
+.text-location-container {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
