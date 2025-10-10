@@ -1,0 +1,42 @@
+.main-card-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  background-color: #211f1f;
+  max-width: 1200px;
+  border-radius: 15px;
+  margin-left: 10px;
+}
+
+.right-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  color: #ffffff;
+}
+
+.game-title {
+    margin: 15px 0 10px 0;
+}
+
+.genre {
+    padding: 7px 15px;
+    max-width: fit-content;
+    background-color: rgb(71, 46, 46);
+    border-radius: 10px;
+}
+
+.short-description {
+    padding-left: 5px;
+}
+
+.developer {
+  padding-left: 5px;
+  margin-bottom: 10px;
+}
+
+img {
+    margin: 15px 5px 15px 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+}

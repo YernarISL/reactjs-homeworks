@@ -1,0 +1,31 @@
+.main-header {
+    margin: 10px 0 0;
+    text-align: center;
+    color: #fff;
+    opacity: 90%;
+}
+
+.main-button {
+    margin: 20px auto;
+    display: block;
+    width: 150px;
+    height: 50px;
+    font-size: 1.2em;
+    font-weight: 700;
+    border: none;
+    border-radius: 20px;
+    background-color: #8f1b1b;
+    color: #fff;
+}
+
+.main-button:hover {
+    cursor: pointer;
+    background-color: #6e1717;
+    transition: 0.2s ease-in-out;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
