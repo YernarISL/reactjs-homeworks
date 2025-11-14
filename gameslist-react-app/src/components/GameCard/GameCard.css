@@ -35,6 +35,22 @@
   margin-bottom: 10px;
 }
 
+.btn-learn-more {
+  background-color: brown;
+  padding: 7px 15px;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  max-width: 120px;
+  margin-bottom: 10px;
+}
+
+.btn-learn-more:hover {
+  background-color: rgb(104, 28, 28);
+  cursor: pointer;
+}
+
+
 img {
     margin: 15px 5px 15px 15px;
     border: 1px solid black;

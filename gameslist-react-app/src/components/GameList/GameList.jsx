@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import GameCard from "../GameCard/GameCard";
 import "./GameList.css";
+import { useNavigate } from "react-router";
 
 const GameList = () => {
   const [games, setGames] = useState([]);
   const [searchGame, setSearchGame] = useState("");
   const [heading, setHeading] = useState("Click to generate list of cards");
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setSearchGame(e.target.value);
@@ -26,7 +29,7 @@ const GameList = () => {
 
     setGames(data);
   }
-
+  
   return (
     <div className="main-container">
       <h1 className="main-header">{heading}</h1>
@@ -38,7 +41,6 @@ const GameList = () => {
             value={searchGame}
             onChange={handleChange}
           />
-          <button className="search-button">Search</button>
           <button className="clear-button" onClick={clearSearch}>
             Clear
           </button>
@@ -46,12 +48,14 @@ const GameList = () => {
         <button className="main-button" onClick={generateGame}>
           Generate
         </button>
+        <button className="back-to-home" onClick={() => navigate("/")}>Back to Home</button>
       </div>
 
       {filteredGames ? (
         <ul>
           {filteredGames.map((game) => (
             <GameCard
+              id={game.id}
               title={game.title}
               shortDescription={game.short_description}
               developer={game.developer}
