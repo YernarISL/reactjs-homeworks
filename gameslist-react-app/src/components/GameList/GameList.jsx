@@ -32,6 +32,7 @@ const GameList = () => {
   
   return (
     <div className="main-container">
+      <img className="game-background-image" src="https://images.wallpapersden.com/image/download/dark-souls-cool-gaming_bWdtZmWUmZqaraWkpJRobWllrWdma2U.jpg" alt="game background" />
       <h1 className="main-header">{heading}</h1>
       <div className="main-functions-container">
         <div className="search-container">

@@ -1,0 +1,48 @@
+.profile-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("https://wallpapers.com/images/featured/dark-souls-aesthetic-qn9yphzfh2by3hbl.jpg") 
+    center/cover no-repeat;
+  color: white;
+}
+
+.profile-card {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 40px;
+  width: 420px;
+  max-width: 90%;
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+.profile-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.profile-info p {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #ddd;
+}
+
+.logout-btn {
+  margin-top: 26px;
+  width: 100%;
+  padding: 12px;
+  background: #c73636;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  background: #862323;
+}
