@@ -1,29 +1,50 @@
 import { useNavigate, useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchItemById, clearSelected } from "../../features/items/itemsSlice";
 import "./GameDetails.css";
 
 const GameDetails = () => {
   const { id } = useParams();
-  const [game, setGame] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { selectedItem: game, loadingItem, errorItem } = useSelector(
+    (state) => state.items
+  );
+
   useEffect(() => {
-    async function fetchGame() {
-      const res = await fetch(`/freetogame/api/game?id=${id}`);
-      const data = await res.json();
-      setGame(data);
-    }
+    dispatch(fetchItemById(id));
+    return () => dispatch(clearSelected());
+  }, [id, dispatch]);
 
-    fetchGame();
-  }, [id]);
 
-  if (!game) return <p style={{ color: "#fff" }}>Loading...</p>;
+  if (loadingItem)
+    return <p style={{ color: "#fff" }}>Loading...</p>;
+
+  if (errorItem)
+    return <p style={{ color: "red" }}>Error: {errorItem}</p>;
+
+  if (!game)
+    return <p style={{ color: "#fff" }}>Game not found.</p>;
 
   return (
     <div className="game-details-container">
       <h1>{game.title}</h1>
       <p>{game.description}</p>
-      <img className="game-details-image" src={game.thumbnail} alt="game_image" />
-      <button className="btn-goto-games" onClick={() => navigate("/games")}>Back to games</button>
+
+      <img
+        className="game-details-image"
+        src={game.thumbnail}
+        alt="game_image"
+      />
+
+      <button
+        className="btn-goto-games"
+        onClick={() => navigate("/games")}
+      >
+        Back to games
+      </button>
     </div>
   );
 };

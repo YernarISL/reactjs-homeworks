@@ -1,61 +1,69 @@
-import React, { useState } from "react";
+import React from "react";
 import GameCard from "../GameCard/GameCard";
 import "./GameList.css";
 import { useNavigate } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchItems, setQuery } from "../../features/items/itemsSlice";
+import { useEffect } from "react";
 
 const GameList = () => {
-  const [games, setGames] = useState([]);
-  const [searchGame, setSearchGame] = useState("");
-  const [heading, setHeading] = useState("Click to generate list of cards");
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { filteredList, loadingList, errorList, query } = useSelector(
+    (state) => state.items
+  );
+
+  useEffect(() => {
+    dispatch(fetchItems(query));
+  }, [query, dispatch]);
+
   const handleChange = (e) => {
-    setSearchGame(e.target.value);
+    dispatch(setQuery(e.target.value));
   };
 
   const clearSearch = () => {
-    setSearchGame("");
+    dispatch(setQuery(""));
   };
 
-  const filteredGames = games.filter((card) =>
-    card.title.toLowerCase().includes(searchGame.toLowerCase())
-  );
-  
-  async function generateGame() {
-    let games = await fetch(`/freetogame/api/games`);
-    let data = await games.json();
-    console.log(data);
-
-    setGames(data);
-  }
-  
   return (
     <div className="main-container">
-      <img className="game-background-image" src="https://images.wallpapersden.com/image/download/dark-souls-cool-gaming_bWdtZmWUmZqaraWkpJRobWllrWdma2U.jpg" alt="game background" />
-      <h1 className="main-header">{heading}</h1>
+      <img
+        className="game-background-image"
+        src="https://images.wallpapersden.com/image/download/dark-souls-cool-gaming_bWdtZmWUmZqaraWkpJRobWllrWdma2U.jpg"
+        alt="game background"
+      />
+
+      <h1 className="main-header">Search Games</h1>
+
       <div className="main-functions-container">
         <div className="search-container">
           <input
             className="search-input"
             type="text"
-            value={searchGame}
+            value={query}
             onChange={handleChange}
           />
+
           <button className="clear-button" onClick={clearSearch}>
             Clear
           </button>
         </div>
-        <button className="main-button" onClick={generateGame}>
-          Generate
+
+        <button className="back-to-home" onClick={() => navigate("/")}>
+          Back to Home
         </button>
-        <button className="back-to-home" onClick={() => navigate("/")}>Back to Home</button>
       </div>
 
-      {filteredGames ? (
+      {loadingList && <p>Loading...</p>}
+
+      {errorList && <p style={{ color: "red" }}>Error: {errorList}</p>}
+
+      {!loadingList && filteredList.length > 0 && (
         <ul>
-          {filteredGames.map((game) => (
+          {filteredList.map((game) => (
             <GameCard
+              key={game.id}
               id={game.id}
               title={game.title}
               shortDescription={game.short_description}
@@ -63,13 +71,12 @@ const GameList = () => {
               photoUrl={game.thumbnail}
               genre={game.genre}
               status={game.status}
-              key={game.id}
             />
           ))}
         </ul>
-      ) : (
-        <p>None</p>
       )}
+
+      {!loadingList && filteredList.length === 0 && <p className="empty-list-condition">No games found.</p>}
     </div>
   );
 };

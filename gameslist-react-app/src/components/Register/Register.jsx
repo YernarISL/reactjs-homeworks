@@ -29,8 +29,6 @@ const Register = () => {
 
       try {
         await doCreateUserWithEmailAndPassword(email, password);
-        // Optionally send verification email
-        // await doSendEmailVerification();
       } catch (err) {
         setErrorMessage(err.message);
         setIsRegistering(false);

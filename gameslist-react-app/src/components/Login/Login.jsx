@@ -16,12 +16,17 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const onSubmit = async (e) => {
-    e.preventDefault();
+    try {
+       e.preventDefault();
     if (!isSigningIn) {
       setIsSigningIn(true);
       await doSignInWithEmailAndPassword(email, password);
-      // doSendEmailVerification()
     }
+    } catch (error) {
+      setErrorMessage(error);
+      console.log(error);
+    }
+
   };
 
   const onGoogleSignIn = (e) => {
@@ -77,9 +82,8 @@ const Login = () => {
                 className="login-input"
               />
             </div>
-
             {errorMessage && (
-              <span className="">{errorMessage}</span>
+              <span className="error-message">{errorMessage}</span>
             )}
 
             <button

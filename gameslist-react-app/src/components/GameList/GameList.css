@@ -106,3 +106,7 @@ ul {
   flex-direction: column;
   gap: 15px;
 }
+
+.empty-list-condition {
+  color: #fff;
+}
